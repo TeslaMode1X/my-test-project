@@ -1,19 +1,21 @@
 package tester
 
-import "strconv"
+import (
+	"errors"
+	"fmt"
+)
 
-var age int = 15
-var name string = "Not Given"
-
-func AddInts(a, b int) int {
-	return a + b
-}
-
-func SayHello(userName string) string {
-	name = userName
-	return "Hi, " + name
-}
-
-func GetInfo() string {
-	return name + " " + strconv.Itoa(age)
+func Hi(name, lang string) (string, error) {
+	switch lang {
+	case "en":
+		return fmt.Sprintf("Hi, %s!", name), nil
+	case "pt":
+		return fmt.Sprintf("Oi, %s!", name), nil
+	case "es":
+		return fmt.Sprintf("¡Hola, %s!", name), nil
+	case "fr":
+		return fmt.Sprintf("Bonjour, %s!", name), nil
+	default:
+		return "", errors.New("unknown language")
+	}
 }
