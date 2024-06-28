@@ -11,9 +11,9 @@ func AddInts(a, b int) int {
 
 func SayHello(userName string) string {
 	name = userName
-	return "Hi," + name
+	return "Hi, " + name
 }
 
 func GetInfo() string {
-	return name + strconv.Itoa(age)
+	return name + " " + strconv.Itoa(age)
 }
