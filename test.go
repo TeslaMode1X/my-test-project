@@ -5,7 +5,12 @@ import (
 	"fmt"
 )
 
+var username string
+var language string
+
 func Hi(name, lang string) (string, error) {
+	username = name
+	language = lang
 	switch lang {
 	case "en":
 		return fmt.Sprintf("Hi, %s!", name), nil
@@ -18,4 +23,11 @@ func Hi(name, lang string) (string, error) {
 	default:
 		return "", errors.New("unknown language")
 	}
+}
+
+func FullInfoAboutUser() (string, error) {
+	if username == "" || language == "" {
+		return "", errors.New("user information is not set")
+	}
+	return fmt.Sprintf("Your name: %s \nYour age: TOP SECRET \nYour language: %s", username, language), nil
 }
