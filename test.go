@@ -1,21 +1,25 @@
 package tester
 
-import (
-	"errors"
-	"fmt"
-)
+type Slice []Element
+type Element int
 
-func Hi(name, lang string) (string, error) {
-	switch lang {
-	case "en":
-		return fmt.Sprintf("Hi, %s!", name), nil
-	case "pt":
-		return fmt.Sprintf("Oi, %s!", name), nil
-	case "es":
-		return fmt.Sprintf("¡Hola, %s!", name), nil
-	case "fr":
-		return fmt.Sprintf("Bonjour, %s!", name), nil
-	default:
-		return "", errors.New("unknown language")
+func Sum(s []Element) (res Element) {
+	for _, v := range s {
+		res += v
 	}
+	return
+}
+
+func SliceFunction(s []Element, op func(Element) Element) {
+	for i, v := range s {
+		s[i] = op(v)
+	}
+}
+
+func SliceOperation(s []Element, op func(Element, Element) Element, init Element) Element {
+	res := op(init, s[0])
+	for i := 1; i < len(s); i++ {
+		res = op(res, s[i])
+	}
+	return res
 }
